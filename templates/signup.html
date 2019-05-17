@@ -33,7 +33,7 @@
       width: 90%;
       padding: 12px;
       border: 1px solid gray;
-      border-radius: 4px;
+      border-radius: 10px;
       margin: 5px 0;
       opacity: 0.85;
       display: inline-block;
@@ -48,10 +48,10 @@
     }
 
     .btn {
-      width: 142%;
+      width: 100%;
       padding: 12px;
       border: 1px solid gray;
-      border-radius: 4px;
+      border-radius: 30px;
       margin: 5px 0;
       opacity: 0.85;
       display: inline-block;
@@ -85,13 +85,16 @@
 
     /* style the submit button */
     input[type=submit] {
-      background-color: #00b8e6;
+      background-color: #0073B1;
       color: white;
       cursor: pointer;
+      border-radius:30px;
     }
 
     input[type=submit]:hover {
-      background-color: #00a3cc;
+      background-color: #006097;
+      color: white;
+      cursor: pointer;
     }
 
     /* Two-column layout */
@@ -197,10 +200,6 @@
             {{ form.email }}
             {{ form.password1 }}
             {{ form.password2 }}
-            {{ form.highestQualification }}
-            {{ form.tenthPercent }}
-            {{ form.twelfthPercent }}
-            {{ form.currentPercent }}
           <input type="submit" value="Sign up">
         </div>
 
@@ -208,16 +207,23 @@
           <br><br><br><br>
           {% load static %}
           <img class="img-responsive" src="{% static "users/bg.png" %}" width="500" height="350"><br><br><br><br>
-          <div class="bottom-container">
-              <a href="#" style="color:black" class="btn"><strong>Sign in</strong></a><br><br><br>
-              <a href="#" style="color:black" class="btn"><strong>Forgot password?</strong></a>
-
-          </div>
         </div>
-
       </div>
     </form>
   </div>
+
+
+  <div class="bottom-container">
+    <div class="row">
+      <div class="col">
+        <a href="{% url 'login' %}" style="color:black" class="btn"><strong>Sign in</strong></a><br><br><br>
+      </div>
+      <div class="col">
+        <a href="#" style="color:black" class="btn"><strong>Forgot password?</strong></a>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
 </body>
 </html>
