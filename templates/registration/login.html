@@ -187,7 +187,7 @@
 <body>
 
 {% block content %}
-<br><br><br>
+    <br><br><br>
   <div class="container">
   <form method="post">
     <div class="row">
@@ -198,11 +198,11 @@
         <strong><p class="signin">Sign in</p></strong>
         <p class="mainhead">Username</p>
         {% csrf_token %}
-          {{ form.username }}
-        <p class="mainhead">Password</p>
+                <input type="text" id="username" name="username"  placeholder="Username">
+           <p class="mainhead">Password</p>
         {% csrf_token %}
-          {{ form.password }}
-        <input type="submit" value="Login">
+                <input type="password" name="password" id="password" placeholder="Password">
+            <input type="submit" value="Login">
       </div>
       <div class="col">
         <br><br><br><br>

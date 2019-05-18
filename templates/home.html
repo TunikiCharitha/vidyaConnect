@@ -5,16 +5,8 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
-  <form method="post">
-  {% csrf_token %}
-    {{ form.about }}
-    {{ form.highestQualification }}
-    {{ form.tenthPercent }}
-    {{ form.twelfthPercent }}
-    {{ form.currentPercent }}
-    {{ form.category }}
-  <input type="submit" value="Sign up">
-    </form>
+
+  <p><a href="{% url 'profile' %}">Edit Profile</a></p>
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
   <p>You are not logged in</p>
