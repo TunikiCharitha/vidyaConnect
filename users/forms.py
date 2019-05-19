@@ -36,11 +36,30 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ('username', 'email')
 
 
+cat_choices = (
+('Internships', 'Internships'),
+('Scholarships', 'Scholarships'),
+('Entrance exams', 'Entrance exams'),
+('Jobs', 'Jobs'),
+('Events', 'Events'),
+('Higher education', 'Higher education'),
+('Startups', 'Startups'),
+('Fellowships', 'Fellowships'),
+('Data Science', 'Data Science'),
+('Artificial Intelligence', 'Artificial Intelligence'),
+)
 
 class ProfileForm(forms.ModelForm):
+    category = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=cat_choices)
     class Meta:
         model = Profile
-        fields=('about','highestQualification','tenthPercent','twelfthPercent','currentPercent','category')
+        fields=('about','highestQualification','currentPercent','category')
+        widgets = {'about': forms.TextInput(attrs={'placeholder': 'Tell us something about yourself!','cols': 5, 'rows': 5}),
+                   'highestQualification': forms.TextInput(attrs={'placeholder': 'Latest qualification' }),
+                   """"'tenthPercent': forms.TextInput(),
+                   'twelfthpercent': forms.TextInput(),"""
+                   'currentpercent': forms.TextInput(),
+                   }
 
 class CustomUserCreationForm2(UserCreationForm):
 

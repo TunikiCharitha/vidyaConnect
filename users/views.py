@@ -27,7 +27,8 @@ def homeView(request):
         return render(request, 'home.html', {})
 def home(request):
     return render(request, 'home.html', {})
-
+def VChome(request):
+    return render(request, 'VChome.html', {})
 
 def login_user(request):
     logout(request)

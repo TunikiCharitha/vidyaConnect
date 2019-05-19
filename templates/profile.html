@@ -1,15 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <form method="post">
-  {% csrf_token %}
-  {{ profile_form.as_p }}
-  <button type="submit">Save changes</button>
-</form>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ul
+{
+    list-style-type: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+input{
+  width: 100%;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  line-height: 40px;
+  text-decoration: none; /* remove underline from anchors */
+}
+.container {
+  position: relative;
+  border-radius: 5px;
+  background-color: white;
+  padding: 20px 0 30px 0;
+}
+
+.col {
+
+  width: 50%;
+  left: 60px;
+  margin: auto;
+  padding: 0 50px;
+  margin-top: 6px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+</style>
 </head>
 <body>
 
+<div class="container">
+  <form method="post">
+    <div class="row">
+      <div class="col">
+        <div>
+            <strong><p> About </p></strong>
+            {% csrf_token %}
+            {{ profile_form.about }}
+        </div>
+
+        <div>
+            <strong><p> Select categories you are interested in </p></strong>
+            {% csrf_token %}
+            {{ profile_form.category }}
+        </div>
+        <input type="submit" value="Submit">
+      </div>
+
+    </div>
+  </form>
+</div>
 </body>
 </html>
+
+
+
+
