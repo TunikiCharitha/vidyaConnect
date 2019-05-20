@@ -54,11 +54,11 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields=('about','highestQualification','currentPercent','category')
-        widgets = {'about': forms.TextInput(attrs={'placeholder': 'Tell us something about yourself!','cols': 5, 'rows': 5}),
-                   'highestQualification': forms.TextInput(attrs={'placeholder': 'Latest qualification' }),
+        widgets = {'about': forms.TextInput(attrs={'placeholder': 'Tell us something about yourself!','class':'myclass'}),
+                   'highestQualification': forms.TextInput(attrs={'placeholder': 'Latest qualification','class':'myclass' }),
                    """"'tenthPercent': forms.TextInput(),
                    'twelfthpercent': forms.TextInput(),"""
-                   'currentpercent': forms.TextInput(),
+                   'currentPercent': forms.TextInput(attrs={'class':'myclass'}),
                    }
 
 class CustomUserCreationForm2(UserCreationForm):

@@ -158,39 +158,34 @@
 <body>
 <br><br><br>
   <div class="container">
+
           <div class="navbar">
-            <div class="row">
-              <div class="col">
-                <div class="row text-center">
-                  <span class="fas fa-sign-in-alt text-center"></span>
-                </div>
-                <div class="row text-center">
-                  <a href="{% url 'login' %}" ><strong>Login</strong></a>
-                </div>
-              </div>
-              <a href="{% url 'login' %}" ><strong>Login</strong></a>
-              <a href="{% url 'login' %}" ><strong>About us</strong></a>
-              <a href="{% url 'login' %}" ><strong><i class="fas fa-home"></i>Home</strong></a>
-            </div>
+              <a href="{% url 'signup' %}"><i class="fas fa-user-plus"></i><br>Sign Up</a>
+              <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i><br>Login</a>
+              <a href="#"><i class="fas fa-info"></i><br>About us</a>
+              <a href="{% url 'VChome' %}"><i class="fas fa-home"></i><br>Home</a>
           </div>
 
-            <div class="row">
+           <div class="row">
                 <div class="col">
                     <div class="txt">
-                    <strong><p style="border:3px; border-style:solid; border-color:#68d1b2; border-radius:10px;">
-                        Your opportunity is your future<br>
-                        You just don't know it yet<br>
-                        Make Informed decision about your future<br>
-                        Let's discover opportunities
-                        </br></p></strong></div>
-                    <a href="{% url 'VChome' %}" style="color:#002269" class="btn"><strong>Get Started</strong></a>
+                        <p style="align:justify">
+                            Your opportunity is your future<br>
+                            You just don't know it yet<br>
+                            Make Informed decision about your future<br>
+                            Let's discover opportunities
+                        </p>
+                    </div>
+                    <a href="{% url 'VChome' %}" style="color:white" class="btn">Get Started</a>
                 </div>
-                <div class="img">
-                <div class="col">
-                    {% load static %}
-                    <img class="img-responsive" src="{% static "users/logo.png" %}" width="700" height="400">
-                </div></div>
-            </div>
+
+                <div class="image">
+                    <div class="col">
+                        {% load static %}
+                        <img class="img-responsive" src="{% static "users/logo.png" %}" width="600" height="300">
+                    </div>
+                </div>
+           </div>
   </div>
 </body>
 </html>

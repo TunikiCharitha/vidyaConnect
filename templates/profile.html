@@ -2,19 +2,36 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <style>
-ul
-{
-    list-style-type: none;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
+
+/* style the container */
+.container {
+  position: relative;
+  border-radius: 5px;
+  background-color: white;
+  padding: 20px 0 30px 0;
+}
+
+ul
+{
+    list-style-type: none;
+}
 input{
-  width: 100%;
-  font-family: 'Lato', sans-serif;
-  font-size: 15px;
+font-family: 'Lato', sans-serif;
   border: 1px solid gray;
   border-radius: 4px;
   margin: 5px 0;
@@ -23,13 +40,47 @@ input{
   line-height: 40px;
   text-decoration: none; /* remove underline from anchors */
 }
-.container {
-  position: relative;
-  border-radius: 5px;
-  background-color: white;
-  padding: 20px 0 30px 0;
+input.myclass{
+font-size:15px;
+font-family: 'Lato', sans-serif;
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  line-height: 40px;
+  text-decoration: none; /* remove underline from anchors */
+}
+textarea{
+    width: 100%;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  text-decoration: none;
+}
+input:hover,
+.btn:hover {
+  opacity: 1;
 }
 
+
+/* style the submit button */
+input[type=submit] {
+  background-color: #0073B1;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+input[type=submit]:hover {
+  background-color: #006097;
+}
+
+/* Two-column layout */
 .col {
 
   width: 50%;
@@ -39,13 +90,73 @@ input{
   margin-top: 6px;
 }
 
+/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
 
+/* vertical line */
+.vl {
+  left: 20%;
+  position: absolute;
+  transform: translate(-50%);
+  border: 2px solid lightgray;
+  height: 800px;
+  float: left;
+  background-color: gray
+  width:30%
+}
 
+/* text inside the vertical line */
+.vl-innertext {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background-color: #0073B1;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 6px 6px;
+}
+p.head{
+    font-family: 'Lato', sans-serif;
+    font-size:20px;
+    color: black;
+    }
+textarea.head2{
+    font-family: 'Lato', sans-serif;
+    font-size:20px;
+    color: black;
+    }
+.fas {
+  color: white;
+}
+
+input[type="text1"]{
+    padding: 50px 10px; line-height: 28px;
+     }
+/* hide some text on medium and large screens */
+
+::placeholder{
+font-family: 'Lato', sans-serif;
+font-size: 15px;
+}
+/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 650px) {
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }
+  /* hide the vertical line */
+  .vl {
+    display: none;
+  }
+  /* show the hidden text on small screens */
+  .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+}
 </style>
 </head>
 <body>
@@ -53,27 +164,55 @@ input{
 <div class="container">
   <form method="post">
     <div class="row">
+      <div class="vl">
+        <span class="vl-innertext" style="top: 1.5%;">
+            <i class="fas fa-user-tag"></i>
+        </span>
+        <span class="vl-innertext" style="top: 17%;">
+            <i class="fas fa-graduation-cap"></i>
+        </span>
+        <span class="vl-innertext" style="top: 32%;">
+            <i class="fas fa-book-open"></i>
+        </span>
+        <span class="vl-innertext" style="top: 47%;">
+            <i class="fas fa-th"></i>
+        </span>
+    </div>
+
+
       <div class="col">
         <div>
-            <strong><p> About </p></strong>
+            <strong><p class="head"> About </p></strong>
             {% csrf_token %}
             {{ profile_form.about }}
         </div>
 
         <div>
-            <strong><p> Select categories you are interested in </p></strong>
+            <strong><p class="head"> Highest qualification </p></strong>
+            {% csrf_token %}
+            {{ profile_form.highestQualification }}
+        </div>
+
+        <div>
+            <strong><p class="head"> Current percentage or GPA </p></strong>
+            {% csrf_token %}
+            {{ profile_form.currentPercent }}
+        </div>
+
+        <div>
+            <strong><p class="head"> Categories interested in: </p></strong>
             {% csrf_token %}
             {{ profile_form.category }}
         </div>
+        <br><br>
+
         <input type="submit" value="Submit">
       </div>
 
     </div>
   </form>
 </div>
+
+
 </body>
 </html>
-
-
-
-
