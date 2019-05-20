@@ -11,25 +11,47 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <style>
 
-    body {
-      background-color: #68d1b2;
-    }
-
     * {
       box-sizing: border-box;
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 50px;
+      padding-right: 50px;
     }
 
-    /* style the container */
     .container {
       position: relative;
       border-radius: 10px;
       box-shadow: 5px 5px 3px grey;
       background-color: #F5F8FB;
       padding: 0px 0 0px 0;
-      margin-top: 5%;
       height:100%;
+    }
+
+    .navbar {
+        background-color: #0073b1;
+        width: 100%;
+        height: 70px;
+        padding: 4px 10px 0px 0px;
+        border-radius:10px 10px 0px 0px;
+     }
+
+    .navbar a {
+        color:white;
+        font-family: Lato, sans-serif;
+        text-align: center;
+        padding: 10px 10px;
+        text-decoration: none;
+        float:right;
+        margin-left:-35px;
+        font-size: 14px;
+        font-weight:bold;
+    }
+
+    .navbar a:hover{
+        color:gainsboro;
+    }
+
+    .fas {
+        font-size:26px;
     }
 
     .btn {
@@ -37,57 +59,25 @@
       border-radius: 30px;
       margin: 5px 0;
       opacity: 0.85;
+      font-family: Lato, sans-serif;
+      font-weight:bold;
       display: inline-block;
-      line-height: 18px;
+      line-height: 17px;
       margin-left:180px;
       font-size: 20px;
-      background-color: #68d1b2;
-      text-decoration: none; /* remove underline from anchors */
-    }
-
-    .btn a{
-        font-size: 20px;
-        font-color:black;
-    }
-    .btn a:hover{
-        font-color:black;
-     }
-    .btn1 {
-      float:right;
-      border-radius: 20px;
-      margin: 5px 0;
-      font-size: 16px;
-      opacity: 0.85;
-      background-color: white;
-      line-height: 20px;
+      background-color: #0073b1;
       text-decoration: none;
+      font-color:white;
     }
 
-    .btn:hover, .btn1:hover{
-      background-color:  gainsboro;
+    .btn:hover{
+      background-color: #006097;
     }
 
-    /* Clear floats after the columns */
     .row:after {
       content: "";
       display: table;
       clear: both;
-    }
-
-    /* bottom container */
-    .bottom-container {
-      text-align: center;
-      background-color: #F5F8FB;
-      border-radius: 0px 0px 4px 4px;
-    }
-
-    .navbar {
-        overflow: hidden;
-        background-color: #174183;
-        border-radius:10px 10px 0px 0px;
-        width: 100%;
-        height: 80px;
-        padding: 20px 10px 0px 0px;
     }
 
     .col {
@@ -95,64 +85,41 @@
           width: 50%;
           height:100%;
           margin: auto;
-          margin-top:6px;
+          margin-top:70px;
+          margin-bottom:6px;
+          padding-left:5px;
     }
 
-    .txt  {
-        margin-top:30px;
-        margin-left:30px;
-    }
-
-    .txt p{
-        text-align: center;
+    .txt {
+        font-family:Montserrat, sans-serif;
+        font-weight:bold;
+        text-align: left;
         font-size:20px;
-        padding: 50px 50px 50px 50px;
     }
 
-    .img{
-        margin-top:50px;
-    }
-    .navbar a {
-        font-size: 22px;
-        color:#174183;
-        text-align: center;
-        padding: 10px 10px;
-        text-decoration: none;
+    .image{
+        margin-left:10px;
     }
 
-    .navbar a:hover{
-        color:black;
-    }
-
-    img{
-        margin-left:-100px;
-    }
-    /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
     @media screen and (max-width: 650px) {
       .col {
         width: 100%;
         margin-top: 0;
       }
     }
+
   </style>
 
-
-
-
-
 {% extends 'base.html' %}
-
 {% block title %}Home{% endblock %}
 </head>
+
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
 
   <p><a href="{% url 'profile' %}">Edit Profile</a></p>
   <p><a href="{% url 'logout' %}">logout</a></p>
-
-
-
 
 {% else %}
 <body>
