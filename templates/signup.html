@@ -11,6 +11,7 @@
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
+      background: url("/static/users/back3.png") 100% 0 no-repeat fixed;
     }
     * {
       box-sizing: border-box;
@@ -57,20 +58,6 @@
     }
     .btn:hover {
       background-color: gainsboro;
-    }
-    /* add appropriate colors to fb, twitter and google buttons */
-    .fb {
-      background-color: #3B5998;
-      color: white;
-      width: 50px;
-    }
-    .twitter {
-      background-color: #55ACEE;
-      color: white;
-    }
-    .google {
-      background-color: #dd4b39;
-      color: white;
     }
     /* style the submit button */
     input[type=submit] {
@@ -131,15 +118,14 @@
       background-color: #F5F8FB;
       border-radius: 0px 0px 4px 4px;
     }
-    /*img.loginimg{
-        height: 150%;
-        width: 140%;
-    }*/
     p.signin{
         font-size: 30px;
         color: black;
         padding-left: 0px;
         font-family: 'Lato', sans-serif;
+    }
+    .field-errors {
+        color: red;
     }
     /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
     @media screen and (max-width: 650px) {
@@ -173,19 +159,28 @@
             <p>Or sign in manually:</p>
           </div>
           <strong><p class="signin">Sign up</p></strong>
-            {% csrf_token %}
-            {% for field in form %}
+            <!--{% for field in form %}
             {{field.label}} {% if field.field.required %} * {% endif %}
             {{field}}
             {{field.errors}}
-            {% endfor %}
-            <!--{{ form.username }}
+            {% endfor %}-->
+            <!--<span class="fields">-->
+            {% csrf_token %}
+            <br>
+            {{form.username.label}}{% if form.username.field.required %} * {% endif %}
+            {{ form.username }}
+            <span class="field-errors">{{ form.username.errors }}</span><br>
+            {{form.email.label}}{% if form.email.field.required %} * {% endif %}
             {{ form.email }}
+            <span class="field-errors">{{ form.email.errors }}</span><br>
+            {{form.password1.label}}{% if form.password1.field.required %} * {% endif %}
             {{ form.password1 }}
-            {{ form.password2 }}-->
+            <span class="field-errors">{{ form.password1.errors }}</span><br>
+            {{form.password2.label}}{% if form.password2.field.required %} * {% endif %}
+            {{ form.password2 }}
+            <span class="field-errors">{{ form.password2.errors }}</span><br>
           <input type="submit" value="Sign up">
         </div>
-
         <div class="col">
           <br><br><br><br>
           {% load static %}
@@ -194,7 +189,6 @@
       </div>
     </form>
   </div>
-
 
   <div class="bottom-container">
     <div class="row">

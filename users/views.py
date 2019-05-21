@@ -19,10 +19,15 @@ class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
-"""class signup2(generic.CreateView):
-    form_class = UserDetailsForm
-    success_url = reverse_lazy('login')
-    template_name = 'signup2.html'"""
+"""def SignUp(request):
+    form = CustomUserCreationForm()
+    if request.POST:
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect(reverse("login"))
+    else:
+        return render(request,'signup.html',{'form': form})"""
+
 def homeView(request):
         return render(request, 'home.html', {})
 def home(request):
@@ -37,9 +42,7 @@ def login_user(request):
         username = request.POST['username']
         password = request.POST['password']
         userLL = CustomUser.objects.get(username=username)
-        #print(userLL)
         last_login = userLL.last_login
-        #print(last_login)
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -54,9 +57,6 @@ def login_user(request):
 
 class LoginRedirectView(generic.View):
     def get(self, request, *args, **kwargs):
-        #flag=self.request.user.flag
-        #userLL = CustomUser.objects.get(username=username)
-        #last_login = userLL.last_login
         obj=CustomUser.objects.get(username=self.request.user.username)
         flag=obj.flag
         print(flag)
@@ -76,10 +76,7 @@ def update_profile(request):
             profile=profile_form.save(commit=False)
             profile.user=request.user
             profile.save()
-            messages.success(request, ('Your profile was successfully updated!'))
             return HttpResponseRedirect(reverse("home"))
-        else:
-            messages.error(request, ('Please correct the error below.'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'profile.html', {

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser,Profile
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
 class CustomUserCreationForm(UserCreationForm):
@@ -20,6 +21,11 @@ class CustomUserCreationForm(UserCreationForm):
                    #'twelfthPercent': forms.TextInput(attrs={'placeholder': 'Twelfth Percentage', 'class': 'inputData'}),
                    #'currentPercent': forms.TextInput(attrs={'placeholder': 'Current Percentage', 'class': 'inputData'})
                    }
+        def clean_username(self):
+            if len(self.data['username'])<6:
+                raise ValidationError(self.fields['username'].error_messages['invalid'])
+            return self.data['username']
+
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
@@ -50,17 +56,15 @@ cat_choices = (
 )
 
 class ProfileForm(forms.ModelForm):
-    category = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=cat_choices)
     class Meta:
         model = Profile
-        fields=('about','highestQualification','currentPercent','category')
-        widgets = {'about': forms.TextInput(attrs={'placeholder': 'Tell us something about yourself!','class':'myclass'}),
-                   'highestQualification': forms.TextInput(attrs={'placeholder': 'Latest qualification','class':'myclass' }),
-                   """"'tenthPercent': forms.TextInput(),
-                   'twelfthpercent': forms.TextInput(),"""
-                   'currentPercent': forms.TextInput(attrs={'class':'myclass'}),
-                   }
-
+        fields = ('about', 'highestQualification', 'currentPercent', 'category')
+        widgets = {'about': forms.TextInput(
+            attrs={'placeholder': 'Tell us something about yourself!', 'class': 'myclass'}),
+            'highestQualification': forms.TextInput(
+                attrs={'placeholder': 'Latest qualification', 'class': 'myclass'}),
+            'currentPercent': forms.TextInput(attrs={'class': 'myclass'}),
+        }
 class CustomUserCreationForm2(UserCreationForm):
 
     class Meta(UserCreationForm):

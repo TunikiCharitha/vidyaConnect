@@ -2,10 +2,13 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'vidyaConnect.settings'
 import django
 django.setup()
-from users.models import CustomUser
-username='Chuck Bass'
-email='iamchuckbass@gmail.com'
+from users.models import CustomUser,Profile
+username='Harvey Specter'
+#email='iamchuckbass@gmail.com'
 userLL = CustomUser.objects.get(username=username)
+#userLL=CustomUser.objects.get(username=self.request.user.username)
 print(userLL)
-last_login = userLL.last_login
-print(last_login)
+userprof=Profile.objects.get(user=userLL)
+print(userprof)
+cat = userprof.category
+print(cat)
