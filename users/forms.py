@@ -7,7 +7,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = CustomUser
-        fields=('email', 'username','password1','password2')
+        fields = ('email', 'username','password1','password2')
         widgets = {'username': forms.TextInput(attrs={'placeholder':'Username','class':'inputData'}),
                    'email': forms.TextInput(attrs={'placeholder': 'Email', 'class': 'inputData'}),
                    }
