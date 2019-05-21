@@ -1,3 +1,4 @@
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +14,9 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
 * {
   box-sizing: border-box;
 }
-
 /* style the container */
 .container {
   position: relative;
@@ -25,29 +24,19 @@ body {
   background-color: white;
   padding: 20px 0 30px 0;
 }
-
 ul
 {
     list-style-type: none;
 }
 
-input{
-    font-family: 'Lato', sans-serif;
-    border: 1px solid gray;
-    border-radius: 4px;
-    margin: 5px 0;
-    opacity: 0.85;
-    display: inline-block;
-    line-height: 40px;
-    text-decoration: none; /* remove underline from anchors */
-}
-
 input.myclass{
-    font-size:15px;
+    font-size:18px;
     font-family: 'Lato', sans-serif;
     width: 100%;
-    border: 1px solid gray;
-    border-radius: 4px;
+    border-bottom: 1px solid gray;
+    border-left:0px;
+    border-right:0px;
+    border-top:0px;
     margin: 5px 0;
     opacity: 0.85;
     display: inline-block;
@@ -68,20 +57,24 @@ textarea{
 input:hover, .btn:hover {
     opacity: 1;
 }
-
+textarea:focus, input:focus{
+    outline: none;
+}
 /* style the submit button */
 input[type=submit] {
     background-color: #0073B1;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:30px;
+    padding-right:30px;
     color: white;
     font-size: 20px;
     cursor: pointer;
     border-radius: 30px;
 }
-
 input[type=submit]:hover {
   background-color: #006097;
 }
-
 /* Two-column layout */
 .col {
     width: 50%;
@@ -90,26 +83,23 @@ input[type=submit]:hover {
     padding: 0 50px;
     margin-top: 6px;
 }
-
 /* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
-
 /* vertical line */
 .vl {
     left: 20%;
     position: absolute;
     transform: translate(-50%);
     border: 2px solid lightgray;
-    height: 800px;
+    height: 1310px;
     float: left;
     background-color: gray
     width:30%
 }
-
 /* text inside the vertical line */
 .vl-innertext {
     position: absolute;
@@ -135,12 +125,27 @@ textarea.head2{
 .fas {
     color: white;
 }
-
 input[type="text1"]{
     padding: 50px 10px; line-height: 28px;
 }
-/* hide some text on medium and large screens */
 
+div.containerChoice{
+text-align:center;
+}
+.item {
+vertical-align: top;
+margin-right:50px;
+display: inline-block;
+text-align: center;
+}
+img {
+    background-color: grey;
+}
+.caption {
+    display: block;
+}
+
+/* hide some text on medium and large screens */
 ::placeholder{
 font-family: 'Lato', sans-serif;
 font-size: 15px;
@@ -170,16 +175,16 @@ font-size: 15px;
   <form method="post">
     <div class="row">
       <div class="vl">
-        <span class="vl-innertext" style="top: 1.5%;">
+        <span class="vl-innertext" style="top: 1%;">
             <i class="fas fa-user-tag"></i>
         </span>
-        <span class="vl-innertext" style="top: 17%;">
+        <span class="vl-innertext" style="top: 10.5%;">
             <i class="fas fa-graduation-cap"></i>
         </span>
-        <span class="vl-innertext" style="top: 32%;">
+        <span class="vl-innertext" style="top: 19.5%;">
             <i class="fas fa-book-open"></i>
         </span>
-        <span class="vl-innertext" style="top: 47%;">
+        <span class="vl-innertext" style="top: 28.5%;">
             <i class="fas fa-th"></i>
         </span>
     </div>
@@ -205,18 +210,89 @@ font-size: 15px;
         </div>
 
         <div>
-            <strong><p class="head"> Categories interested in: </p></strong>
-            {% csrf_token %}
-            {{ profile_form.category }}
+            <strong><p class="head"> Select the categories you are interested in: </p></strong>
         </div>
+            <!--{% for value, text in profile_form.category.field.choices %}
+                <div class="ui slider checkbox">
+                    <input name="{{ profile_form.category.name }}" type="checkbox" value="{{ value }}"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label>{{ value }}</label>
+                </div>
+            {% endfor %}-->
+
+            <!--{% for text in profile_form.category.field.choices %}
+                {{ value }}: {{ text }}
+            {% endfor %}
+            {% csrf_token %}
+            {{ profile_form.category.Internships }}
+            {{ profile_form.category.Scholarships }}
+            {{ profile_form.category.EntranceExams }}
+            {{ profile_form.category.Jobs }}
+            {{ profile_form.category.Events }}
+            {{ profile_form.category.HigherEducation }}
+            {{ profile_form.category.Startups }}
+            {{ profile_form.category.Fellowships }}
+            {{ profile_form.category.DataScience }}
+            {{ profile_form.category.ArtificialIntelligence }}-->
+            <!--{% csrf_token %}
+            <select id="id_Customer" name="category">
+                {% for x in profile_form.category %}
+                    <option value="{{ x }}"></option>
+                {% endfor %}
+            </select>-->
         <br><br>
 
-        <input type="submit" value="Submit">
+          <br><br>
+        <div class="containerChoice">
+                <div class="item">
+                    {% load static %}
+                    <img class="img-responsive" src="{% static "users/internship.png" %}" style="width: 140px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Internships"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/jobs.png" %}" style="width: 130px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Jobs"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div><br><br><br><br>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/scholarship.png" %}" style="width: 150px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Scholarships"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/exams.png" %}" style="width: 100px;height: 100px;align:left;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="EntranceExams"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div><br><br><br><br>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/events.png" %}" style="width: 95px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Events"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/higher.png" %}" style="width: 130px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="HigherEducation"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div><br><br><br><br>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/startup.png" %}" style="width: 130px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Startups"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/fellow.png" %}" style="width: 150px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Fellowships"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div><br><br><br><br>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/ds.png" %}" style="width: 140px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="DataScience"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="{% static "users/ai.png" %}" style="width: 170px;height: 100px;">
+                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="ArtificialIntelligence"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                </div><br><br><br><br>
+            </div>
+          <input type="submit" value="Submit">
       </div>
 
     </div>
+
   </form>
 </div>
+
 
 
 </body>
