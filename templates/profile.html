@@ -30,50 +30,52 @@ ul
 {
     list-style-type: none;
 }
+
 input{
-font-family: 'Lato', sans-serif;
-  border: 1px solid gray;
-  border-radius: 4px;
-  margin: 5px 0;
-  opacity: 0.85;
-  display: inline-block;
-  line-height: 40px;
-  text-decoration: none; /* remove underline from anchors */
-}
-input.myclass{
-font-size:15px;
-font-family: 'Lato', sans-serif;
-  width: 100%;
-  border: 1px solid gray;
-  border-radius: 4px;
-  margin: 5px 0;
-  opacity: 0.85;
-  display: inline-block;
-  line-height: 40px;
-  text-decoration: none; /* remove underline from anchors */
-}
-textarea{
-    width: 100%;
-  border: 1px solid gray;
-  border-radius: 4px;
-  margin: 5px 0;
-  opacity: 0.85;
-  display: inline-block;
-  text-decoration: none;
-}
-input:hover,
-.btn:hover {
-  opacity: 1;
+    font-family: 'Lato', sans-serif;
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    line-height: 40px;
+    text-decoration: none; /* remove underline from anchors */
 }
 
+input.myclass{
+    font-size:15px;
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    line-height: 40px;
+    text-decoration: none; /* remove underline from anchors */
+}
+
+textarea{
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    text-decoration: none;
+}
+
+input:hover, .btn:hover {
+    opacity: 1;
+}
 
 /* style the submit button */
 input[type=submit] {
-  background-color: #0073B1;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 30px;
+    background-color: #0073B1;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 30px;
 }
 
 input[type=submit]:hover {
@@ -82,65 +84,68 @@ input[type=submit]:hover {
 
 /* Two-column layout */
 .col {
-
-  width: 50%;
-  left: 60px;
-  margin: auto;
-  padding: 0 50px;
-  margin-top: 6px;
+    width: 50%;
+    left: 60px;
+    margin: auto;
+    padding: 0 50px;
+    margin-top: 6px;
 }
 
 /* Clear floats after the columns */
 .row:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* vertical line */
 .vl {
-  left: 20%;
-  position: absolute;
-  transform: translate(-50%);
-  border: 2px solid lightgray;
-  height: 800px;
-  float: left;
-  background-color: gray
-  width:30%
+    left: 20%;
+    position: absolute;
+    transform: translate(-50%);
+    border: 2px solid lightgray;
+    height: 800px;
+    float: left;
+    background-color: gray
+    width:30%
 }
 
 /* text inside the vertical line */
 .vl-innertext {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  background-color: #0073B1;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  padding: 6px 6px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: #0073B1;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 6px 6px;
 }
+
 p.head{
     font-family: 'Lato', sans-serif;
     font-size:20px;
     color: black;
     }
+
 textarea.head2{
     font-family: 'Lato', sans-serif;
     font-size:20px;
     color: black;
     }
+
 .fas {
-  color: white;
+    color: white;
 }
 
 input[type="text1"]{
     padding: 50px 10px; line-height: 28px;
-     }
+}
 /* hide some text on medium and large screens */
 
 ::placeholder{
 font-family: 'Lato', sans-serif;
 font-size: 15px;
 }
+
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 650px) {
   .col {
