@@ -22,14 +22,15 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.views.decorators.cache import never_cache
 
-import poplib
-import logging ,email, time
+import dns.resolver
+import socket
+import smtplib
 
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        username=''
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = False
@@ -47,40 +48,39 @@ def signup(request):
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            """if checkDelivery(to_email):
-                return HttpResponse('Please confirm your email address to complete the registration')
+            if email_verify(to_email):
+                return HttpResponse('<h3>Please confirm your email address to complete the registration</h3>')
             else:
-                return redirect('signup')"""
-            return HttpResponse('Please confirm your email address to complete the registration')
+                messages.error(request, 'Email address doesn\'t exist')
+                return redirect('signup')
     else:
         form = CustomUserCreationForm
     return render(request, 'signup.html', {'form': form})
 
-"""def checkDelivery(to_email):
-    SERVER = "pop.gmail.com"
-    USER = "vanithakunta29@gmail.com"
-    PASSWORD = "vidyaconnect"
+def email_verify(to_email):
+    #MS record for target domain in order to start email verification process
+    records = dns.resolver.query('emailhippo.com', 'MX')
+    mxRecord = records[0].exchange
+    mxRecord = str(mxRecord)
 
-    server = poplib.POP3_SSL(SERVER)
-    server.user(USER)
-    server.pass_(PASSWORD)
+    #verifying email
+    host = socket.gethostname() #Get local server hostname
+    server = smtplib.SMTP() #SMTP lib setup (use debug level for full output)
+    server.set_debuglevel(0)
 
-    resp, items, octets = server.list()
-    i, size = items[len(items) - 1].split()
-    resp, text, octets = server.retr(int(i))
-    bo = ""
-    for x in text:
-        bo = bo + x.decode("utf-8") + "\n"
+    server.connect(mxRecord)# SMTP Conversation
+    server.helo(host)
+    server.mail('vanithakunta29@gmail.com')
+    code, message = server.rcpt(str(to_email))
+    server.quit()
 
-    em = email.message_from_string(bo)
-
-    if em['X-Failed-Recipients'] == to_email:
-        return False
+    # Assume 250 as Success
+    if code == 250:
+        return True
     else:
-        return True"""
+        return False
 
 def activate(request, uidb64, token):
-    username=''
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = CustomUser.objects.get(pk=uid)
@@ -90,11 +90,10 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
+        messages.success(request, 'Thank you for your email confirmation. Now you can login your account.')
         return redirect('login')
         # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
-        usr = CustomUser.objects.get(username == user.username)
-        usr.delete()
         return HttpResponse('Activation link is invalid!')
 
 """class SignUp(generic.CreateView):
@@ -129,21 +128,15 @@ def login_user(request):
                 else:
                     return HttpResponseRedirect(reverse("VChome"))
         else:
-            #messages.success(request,_('Incorrect username or password'))
-            #return render(request,'base.html')
-            #messages.add_message(request, messages.SUCCESS, 'Incorrect username or password')
+            """messages.success(request,_('Incorrect username or password'))
+            return render(request,'base.html')
+            messages.add_message(request, messages.SUCCESS, 'Incorrect username or password')"""
             return render(request, 'login.html')
     return render(request, 'login.html')
 
 class LoginRedirectView(generic.View):
     def get(self, request, *args, **kwargs):
         obj = CustomUser.objects.get(username=self.request.user.username)
-        """pwd=obj.password
-        if pwd!=self.request.user.password:
-            return redirect('home')"""
-        """user = authenticate(username=self.request.user.username, password=self.request.user.password)
-        if user is None:
-            return HttpResponseRedirect(reverse("home"))"""
         flag = obj.flag
         print(flag)
         if flag == 'first':
