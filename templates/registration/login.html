@@ -158,6 +158,9 @@
         font-family: 'Lato', sans-serif;
     }
 
+    .alert{
+        color:green;
+    }
     p.mainhead{
       font-size: 20px;
       color: black;
@@ -200,7 +203,7 @@
           <p>Or sign in manually:</p>
         </div>
         <strong><p class="signin">Sign in</p></strong>
-          {% if messages %}
+        {% if messages %}
             {% for message in messages %}
                 <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
             {% endfor %}

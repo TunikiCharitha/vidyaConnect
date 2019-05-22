@@ -144,7 +144,7 @@
         font-family: 'Lato', sans-serif;
     }
 
-    .field-errors {
+    .field-errors, .alert {
         color: red;
     }
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
@@ -193,6 +193,13 @@
             {{form.email.label}}{% if form.email.field.required %} * {% endif %}
             {{ form.email }}
             <span class="field-errors">{{ form.email.errors }}</span><br>
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:{% else %}{{ message.tags }}{% endif %}
+                {% endif %}" role="alert">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
             {{form.password1.label}}{% if form.password1.field.required %} * {% endif %}
             {{ form.password1 }}
             <span class="field-errors">{{ form.password1.errors }}</span><br>
