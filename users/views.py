@@ -12,9 +12,9 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib import messages
 from django.template import RequestContext
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 from .models import CustomUser,Profile
-from django.contrib.auth import login, authenticate
+from django.contrib.auth.views import login
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -31,6 +31,10 @@ import smtplib
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
+        username = request.POST['username']
+        if len(username)<6:
+            messages.error(request, 'Username should be minimum 6 characters')
+            return redirect('signup')
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = False
@@ -114,9 +118,6 @@ def login_user(request):
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
-        """if username or password not in CustomUser.objects.all():
-            messages.success(request, _('Incorrect username or password'))
-            return redirect('home')"""
         userLL = CustomUser.objects.get(username=username)
         last_login = userLL.last_login
         user = authenticate(username=username, password=password)
@@ -131,7 +132,9 @@ def login_user(request):
             """messages.success(request,_('Incorrect username or password'))
             return render(request,'base.html')
             messages.add_message(request, messages.SUCCESS, 'Incorrect username or password')"""
-            return render(request, 'login.html')
+            messages.error(request, 'Invalid login')
+            return redirect('login')
+            #return render(request, 'login.html')
     return render(request, 'login.html')
 
 class LoginRedirectView(generic.View):

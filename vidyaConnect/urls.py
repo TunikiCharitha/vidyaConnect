@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
+    #path('login/', include('django.contrib.auth.views.login')),
     path('accounts/profile', views.update_profile, name='profile'),
     #path('login/done/', views.LoginRedirectView.as_view(), name='login_redirect'),
 
