@@ -12,15 +12,15 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: url("/static/users/back3.png") 100% 0 no-repeat fixed;
+      background: url("/static/users/backLP5.png") 100% 0 no-repeat fixed;
       background-size:cover;
       background-position:center;
     }
 
     * {
       box-sizing: border-box;
-      padding-left: 50px;
-      padding-right: 50px;
+      padding-left: 60px;
+      padding-right: 60px;
     }
 
     /* style the container */
@@ -29,13 +29,13 @@
       border-radius: 5px;
       box-shadow: 5px 5px 3px lightgrey;
       background-color: #F5F8FB;
-      padding: 20px 0 30px 0;
+      padding: 0;
     }
 
     /* style inputs and link buttons */
     input{
       width: 90%;
-      padding: 12px;
+      padding: 8px;
       border: 1px solid gray;
       border-radius: 10px;
       margin: 5px 0;
@@ -52,11 +52,11 @@
     }
 
     .btn {
-      width: 100%;
-      padding: 12px;
+      width: 150%;
+      padding: 10px;
       border: 1px solid gray;
       border-radius: 30px;
-      margin: 5px 0;
+      margin: 10px 0;
       opacity: 0.85;
       display: inline-block;
       font-family: 'Lato', sans-serif;
@@ -88,62 +88,33 @@
       float: left;
       width: 50%;
       margin: auto;
-      padding: 0 20px;
+      padding: 0;
       margin-top: 6px;
     }
-
-    /* Clear floats after the columns */
     .row:after {
       content: "";
       display: table;
       clear: both;
+      padding:0px;
     }
-
-    /* vertical line */
-    .vl {
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%);
-      border: 2px solid #ddd;
-      height: 330px;
-    }
-
-    /* text inside the vertical line */
-    .vl-innertext {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #f1f1f1;
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      padding: 8px 10px;
-    }
-
-    /* hide some text on medium and large screens */
     .hide-md-lg {
       display: none;
     }
-
-    /* bottom container */
     .bottom-container {
       text-align: center;
       background-color: #F5F8FB;
       border-radius: 0px 0px 4px 4px;
     }
-
-    .containerBelow{
-      text-align: center;
-      background-color: #F5F8FB;
-      border-radius: 0px 0px 4px 4px;
+    .bottom{
+    padding-left:170px;
+    width:100%;
     }
-
     p.signin{
         font-size: 30px;
         color: black;
         padding-left: 0px;
         font-family: 'Lato', sans-serif;
     }
-
     .field-errors, .alert {
         color: red;
     }
@@ -169,7 +140,7 @@
 </head>
 
 <body>
-<br><br><br>
+
 {% block content %}
   <div class="container">
     <form method="post">
@@ -206,27 +177,24 @@
             {{form.password2.label}}{% if form.password2.field.required %} * {% endif %}
             {{ form.password2 }}
             <span class="field-errors">{{ form.password2.errors }}</span><br>
-          <input type="submit" value="Sign up">
+          <input type="submit" value="Sign up"><br>
         </div>
         <div class="col">
+          <div class="row"></div>
           <br><br><br><br>
           {% load static %}
-          <img class="img-responsive" src="{% static "users/bg.png" %}" width="500" height="350"><br><br><br><br>
-        </div>
+          <img class="img-responsive" src="{% static "users/icon3.png" %}" width="450" height="330">
+          <div class="bottom-container">
+          <a href="{% url 'login' %}" style="color:black;text-align:center;" class="btn"><strong>Sign in</strong></a>
+         <a href="{% url 'password_reset' %}" style="color:black;text-align:center;" class="btn"><strong>Forgot password?</strong></a>
+          </div>
+          </div>
+
       </div>
+
     </form>
   </div>
 
-  <div class="bottom-container">
-    <div class="row">
-      <div class="col">
-        <a href="{% url 'login' %}" style="color:black" class="btn"><strong>Sign in</strong></a><br><br><br>
-      </div>
-      <div class="col">
-        <a href="{% url 'password_reset' %}" style="color:black" class="btn"><strong>Forgot password?</strong></a>
-      </div>
-    </div>
-  </div>
 
 {% endblock %}
 </body>
