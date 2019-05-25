@@ -29,10 +29,7 @@
   background-color: white;
   padding: 20px 0 30px 0;
 }
-ul
-{
-    list-style-type: none;
-}
+
 
 input.myclass{
     font-size:18px;
@@ -142,6 +139,8 @@ vertical-align: top;
 margin-right:50px;
 display: inline-block;
 text-align: center;
+position:relative;
+
 }
 img {
     background-color: grey;
@@ -155,7 +154,99 @@ img {
 font-family: 'Lato', sans-serif;
 font-size: 15px;
 }
+ul {
+  list-style-type: none;
+}
 
+li {
+  display: inline-block;
+}
+
+input[type="checkbox"][id^="cb"] {
+  display: none;
+}
+
+label {
+  border: 1px solid #fff;
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+label::before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  font-size:20px;
+}
+.centered2{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  font-size:17px;
+  }
+  .centered3{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  font-size:15px;
+  }
+label img {
+  height: 120px;
+  width: 120px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+:checked+label {
+  border-color: #ddd;
+}
+
+:checked+label::before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked+label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+}
+.img-responsive{
+ filter: brightness(60%);
+ }
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 650px) {
   .col {
@@ -217,77 +308,60 @@ font-size: 15px;
         <div>
             <strong><p class="head"> Select the categories you are interested in: </p></strong>
         </div>
-            <!--{% for value, text in profile_form.category.field.choices %}
-                <div class="ui slider checkbox">
-                    <input name="{{ profile_form.category.name }}" type="checkbox" value="{{ value }}"{% if value in checked_providers %} checked="checked"{% endif %}>
-                    <label>{{ value }}</label>
-                </div>
-            {% endfor %}-->
-
-            <!--{% for text in profile_form.category.field.choices %}
-                {{ value }}: {{ text }}
-            {% endfor %}
-            {% csrf_token %}
-            {{ profile_form.category.Internships }}
-            {{ profile_form.category.Scholarships }}
-            {{ profile_form.category.EntranceExams }}
-            {{ profile_form.category.Jobs }}
-            {{ profile_form.category.Events }}
-            {{ profile_form.category.HigherEducation }}
-            {{ profile_form.category.Startups }}
-            {{ profile_form.category.Fellowships }}
-            {{ profile_form.category.DataScience }}
-            {{ profile_form.category.ArtificialIntelligence }}-->
-            <!--{% csrf_token %}
-            <select id="id_Customer" name="category">
-                {% for x in profile_form.category %}
-                    <option value="{{ x }}"></option>
-                {% endfor %}
-            </select>-->
         <br><br>
 
           <br><br>
         <div class="containerChoice">
                 <div class="item">
                     {% load static %}
-                    <img class="img-responsive" src="{% static "users/internship.png" %}" style="width: 140px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Internships"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb1" value="Internships"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb1"><img class="img-responsive" src="{% static "users/c1.png" %}" /></label>
+                    <div class="centered2">INTERNSHIPS</div>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/jobs.png" %}" style="width: 130px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Jobs"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb2" value="Jobs"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb2"><img class="img-responsive" src="{% static "users/c2.jpg" %}" /></label>
+                    <div class="centered">JOBS</div>
                 </div><br><br><br><br>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/scholarship.png" %}" style="width: 150px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Scholarships"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb4" value="Scholarships"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb4"><img class="img-responsive" src="{% static "users/c4.jpg" %}" /></label>
+                    <div class="centered3">SCHOLARSHIPS</div>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/exams.png" %}" style="width: 100px;height: 100px;align:left;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="EntranceExams"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb6" value="EntranceExams"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb6"><img class="img-responsive" src="{% static "users/c6.jpeg" %}" /></label>
+                    <div class="centered2">ENTRANCE<br>EXAMS</div>
                 </div><br><br><br><br>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/events.png" %}" style="width: 95px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Events"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb3" value="Events"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb3"><img class="img-responsive" src="{% static "users/c3.jpg" %}" /></label>
+                    <div class="centered">EVENTS</div>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/higher.png" %}" style="width: 130px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="HigherEducation"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb7" value="HigherEducation"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb7"><img class="img-responsive" src="{% static "users/c7.jpg" %}" /></label>
+                    <div class="centered2">HIGHER<BR>EDUCATION</div>
                 </div><br><br><br><br>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/startup.png" %}" style="width: 130px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Startups"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb8" value="Startups"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb8"><img class="img-responsive" src="{% static "users/c8.jpg" %}" /></label>
+                    <div class="centered2">STARTUPS</div>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/fellow.png" %}" style="width: 150px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="Fellowships"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb5" value="Fellowships"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb5"><img class="img-responsive" src="{% static "users/c5.jpg" %}" /></label>
+                    <div class="centered3">FELLOWSHIPS</div>
                 </div><br><br><br><br>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/ds.png" %}" style="width: 140px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="DataScience"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb9" value="DataScience"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb9"><img class="img-responsive" src="{% static "users/c9.jpg" %}" /></label>
+                    <div class="centered2">DATA<br>SCIENCE</div>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="{% static "users/ai.png" %}" style="width: 170px;height: 100px;">
-                    <span class="caption"><input name="{{ profile_form.category.name }}" type="checkbox" value="ArtificialIntelligence"{% if value in checked_providers %} checked="checked"{% endif %}></span>
+                    <input name="{{ profile_form.category.name }}" type="checkbox" id="cb10" value="ArtificialIntelligence"{% if value in checked_providers %} checked="checked"{% endif %}>
+                    <label for="cb10"><img class="img-responsive" src="{% static "users/c10.jpg" %}" /></label>
+                    <div class="centered3">ARTIFICIAL<br>INTELLIGENCE</div>
                 </div><br><br><br><br>
             </div>
           <input type="submit" value="Submit">
