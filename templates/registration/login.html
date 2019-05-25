@@ -11,7 +11,7 @@
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: url("/static/users/back3.png") 100% 0 no-repeat fixed;
+      background: url("/static/users/backLP5.png") 100% 0 no-repeat fixed;
       background-repeat: no-repeat;
       background-size:cover;
       background-position:center;
@@ -19,8 +19,8 @@
 
     * {
       box-sizing: border-box;
-      padding-left: 50px;
-      padding-right: 50px;
+      padding-left: 60px;
+      padding-right: 60px;
     }
 
     /* style the container */
@@ -29,16 +29,16 @@
       border-radius: 5px;
       box-shadow: 5px 5px 3px lightgrey;
       background-color: #F5F8FB;
-      padding: 10px 0 10px 0;
+      padding: 0;
     }
 
     /* style inputs and link buttons */
     input{
       width: 90%;
-      padding: 12px;
+      padding: 8px;
       border: 1px solid gray;
       border-radius: 10px;
-      margin: 5px 0;
+
       opacity: 0.85;
       display: inline-block;
       font-family: 'Lato', sans-serif;
@@ -52,7 +52,7 @@
     }
 
     .btn {
-      width: 100%;
+      width: 90%;
       padding: 12px;
       border: 1px solid gray;
       border-radius: 30px;
@@ -68,9 +68,6 @@
     .btn:hover {
       background-color: gainsboro;
     }
-
-
-    /* add appropriate colors to fb, twitter and google buttons */
     .fb {
       background-color: #3B5998;
       color: white;
@@ -101,9 +98,8 @@
     .col {
       float: left;
       width: 50%;
-      margin: auto;
-      padding: 0 10px;
-      margin-top: 0px;
+      padding: 0px;
+      margin: 0px;
     }
 
     .row:after {
@@ -112,23 +108,6 @@
       clear: both;
     }
 
-    .vl {
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%);
-      border: 2px solid #ddd;
-      height: 330px;
-    }
-
-    .vl-innertext {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #f1f1f1;
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      padding: 8px 10px;
-    }
 
     /* hide some text on medium and large screens */
     .hide-md-lg {
@@ -139,6 +118,7 @@
       text-align: center;
       background-color: #F5F8FB;
       border-radius: 0px 0px 4px 4px;
+
     }
 
     .containerBelow{
@@ -154,7 +134,7 @@
     p.signin{
         font-size: 30px;
         color: black;
-        padding-left: 0px;
+        padding: 0px;
         font-family: 'Lato', sans-serif;
     }
 
@@ -164,11 +144,10 @@
     p.mainhead{
       font-size: 20px;
       color: black;
-      padding-left: 0px;
-      padding-down: 0px;
-      padding-top:0px;
+      padding: 0px;
       font-family: 'Lato', sans-serif;
     }
+
 
     /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
     @media screen and (max-width: 650px) {
@@ -194,7 +173,7 @@
 <body>
 
 {% block content %}
-    <br><br><br>
+
   <div class="container">
   <form method="post">
     <div class="row">
@@ -213,19 +192,17 @@
                 <input type="text" id="username" name="username"  placeholder="Username">
            <p class="mainhead">Password</p>
         {% csrf_token %}
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password"><br><br>
             <input type="submit" value="Login">
       </div>
       <div class="col">
         <br><br><br><br>
         {% load static %}
-          <img class="img-responsive" src="{% static "users/bg.png" %}" width="500" height="350"><br><br><br><br>
+          <img class="img-responsive" src="{% static "users/icon3.png" %}" width="450" height="330"><br><br><br><br>
       </div>
     </div>
   </form>
-</div>
-
-<div class="bottom-container">
+      <div class="bottom-container">
   <div class="row">
     <div class="col">
       <a href="{% url 'signup' %}" style="color:black" class="btn"><strong>Sign up</strong></a>
@@ -235,6 +212,9 @@
     </div>
   </div>
 </div>
+</div>
+
+
 {% endblock %}
 </body>
 </html>
