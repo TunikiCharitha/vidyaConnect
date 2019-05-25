@@ -11,119 +11,98 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Arvo:400i&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
     <style>
  body {
       font-family: Arial, Helvetica, sans-serif;
-      background: url("/static/users/backLP5.png") 100% 0 no-repeat fixed;
+      background: url("/static/users/final.png") 100% 0 no-repeat fixed;
       background-repeat: no-repeat;
       background-size:cover;
       background-position:center;
     }
- * {
-      box-sizing: border-box;
-      padding-left: 50px;
-      padding-right: 50px;
-    }
-
-    .container {
-      position: relative;
-      border-radius: 10px;
-      box-shadow: 5px 5px 3px grey;
-      background-color: #FFFFFF;
-      padding: 0px 0 0px 0;
-      height:100%;
-    }
 
     .navbar {
-        background-color: #0073b1;
         width: 100%;
         height: 70px;
-        padding: 4px 10px 0px 0px;
-        border-radius:10px 10px 0px 0px;
+        margin-top:50px;
+        margin-left:15%;
      }
 
     .navbar a {
-        color:white;
-        font-family: Lato, sans-serif;
+        color:#0073b1;
+        font-family: "Roboto";
         text-align: center;
-        padding: 10px 10px;
+        padding: 24px;
         text-decoration: none;
-        float:right;
-        margin-left:-35px;
-        font-size: 14px;
-        font-weight:bold;
+        float:left;
+        font-size: 20px;
     }
 
     .navbar a:hover{
         color:gainsboro;
+        font-size: 20px;
+    }
+
+    .navbar i{
+        color:#0073b1;
+        float:left;
+        font-size: 60px;
+        padding-right:370px;
     }
 
     .fas {
         font-size:26px;
     }
+
     .fa-quote-left, .fa-quote-right{
-    padding:0px;
-    font-size:12px;
+        padding:0px;
+        font-size:12px;
     }
 
-
     .btn {
-      padding: 15px;
-      border-radius: 30px;
-      margin: 5px 0;
-      opacity: 0.85;
-      font-family: Lato, sans-serif;
-      font-weight:bold;
-      display: inline-block;
-      line-height: 17px;
-
-      font-size: 20px;
-      background-color: #0073b1;
-      text-decoration: none;
-      font-color:white;
+        width:150px;
+        border-radius: 30px;
+        margin-left:70px;
+        opacity: 0.85;
+        font-family: "Roboto";
+        display: inline-block;
+        line-height: 17px;
+        font-size: 20px;
+        background-color: #0073b1;
+        text-decoration: none;
+        text-align:center;
+        padding:15px;
+        font-color:white;
     }
 
     .btn:hover{
       background-color: #006097;
     }
 
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
+    .col-sm-4{
+        float: left;
+        margin-top:8px;
+        margin-left:20px;
     }
 
-    .col {
-          float: left;
-          width: 50%;
-          height:100%;
-          margin: auto;
-          margin-top:70px;
-          margin-bottom:6px;
-          padding-left:5px;
-          padding:0;
-
-    }
-
-    .txt {
-        font-family: 'Arvo', serif;
-        font-weight:bold;
+    .col-sm-6 {
+        float:left;
+        display:inline;
+        margin-top:110px;
+        margin-left:220px;
+        font-family: "Roboto";
         text-align: left;
-        font-size:20px;
-        padding:0px;
-    }
-    .txt p{
-    padding:0px;
-    }
-
-    .image{
-
+        font-size:26px;
+        white-space:nowrap;
     }
 
     @media screen and (max-width: 650px) {
-      .col {
+      .col-sm-6, .col-sm-4 {
         width: 100%;
         margin-top: 0;
+        margin-left:0;
       }
     }
 
@@ -142,37 +121,42 @@
 
 {% else %}
 <body>
-<br><br><br>
-  <div class="container">
+     <div class="navbar">
+         <i class="fa fa-graduation-cap"><p style="font-size: 26px; color:#0073b1; font-family: Roboto; display:inline;">VIDHYACONNECT</p></i>
+         <a href="{% url 'VChome' %}">Home</a>
+         <a href="#">About us</a>
+         <a href="{% url 'login' %}">Login</a>
+         <a href="{% url 'signup' %}">Sign Up</a>
+     </div>
+    <div class="row">
+        <div class="col-sm-6">
+         <p style="align:justify">
+             <h3 style="align:justify">EXPLORE OPPORTUNITIES</h3>
+                    Your opportunity is your future, you just don't know it yet.<br>
+                    Make Informed decision about your future.<br>
+                    Let's discover plethora of opportunities.
+         </p>
+         <a href="{% url 'VChome' %}" style="color:white;" class="btn">Get Started</a>
+        </div>
+        <div class="col-sm-4">
+          {% load static %}
+            <img class="img-responsive" src="{% static "users/LP1.jpg" %}" width="470" height="530">
+        </div>
+    </div>
+<!-- <div class="txt">
+                <p style="align:justify"><br><br>
+                    Your opportunity is your future<br>
+                    You just don't know it yet<br>
+                    Make Informed decision about your future<br>
+                    Let's discover opportunities
+                </p>
+                <a href="{% url 'VChome' %}" style="color:white;" class="btn">Get Started</a>
+            </div>
 
-          <div class="navbar">
-              {% load static %}
-              <img class="img-responsive" src="{% static "users/logo2.png" %}" width="220" height="66">
-              <a href="{% url 'signup' %}"><i class="fas fa-user-plus"></i><br>Sign Up</a>
-              <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i><br>Login</a>
-              <a href="#"><i class="fas fa-info"></i><br>About us</a>
-              <a href="{% url 'VChome' %}"><i class="fas fa-home"></i><br>Home</a>
-          </div>
-
-           <div class="row">
-                <div class="col">
-                    <div class="txt">
-                        <p style="align:justify"><br><br>
-                            Your opportunity is your future<br>
-                            You just don't know it yet<br>
-                            Make Informed decision about your future<br>
-                            Let's discover opportunities
-                        </p>
-                    </div>
-                    <a href="{% url 'VChome' %}" style="color:white;" class="btn">Get Started</a>
-                </div>
-                <div class="col">
-                        {% load static %}
-                        <img class="img-responsive" src="{% static "users/LP1.jpg" %}" width="480" height="400">
-
-                </div>
-           </div>
-  </div>
+        <div class="col2">
+            {% load static %}
+            <img class="img-responsive" src="{% static "users/LP1.jpg" %}" width="480" height="400">
+        </div>-->
 </body>
 </html>
 {% endif %}
