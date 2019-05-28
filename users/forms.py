@@ -1,9 +1,20 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser,Profile
+from .models import CustomUser,Profile, Subscription
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
 
+
+class SubscriptionForm(forms.ModelForm):
+    class Meta:
+        model = Subscription
+        fields = ('fullname', 'mailid')
+        widgets = {'fullname': forms.TextInput(attrs={'placeholder': 'Full Name'}),
+                   'mailid': forms.TextInput(attrs={'placeholder': 'Email'}),
+                   }
 class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):

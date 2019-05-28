@@ -13,7 +13,7 @@ from django.db import transaction
 from django.contrib import messages
 from django.template import RequestContext
 from django.contrib.auth import authenticate, logout
-from .models import CustomUser,Profile
+from .models import CustomUser,Profile, Subscription
 from django.contrib.auth.views import login
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
@@ -23,6 +23,12 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.views.decorators.cache import never_cache
+from django.views.generic import UpdateView, ListView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
+from django.views import generic
+from bootstrap_modal_forms.mixins import PassRequestMixin
+from .forms import SubscriptionForm
 
 import dns.resolver
 import socket
@@ -108,6 +114,15 @@ def activate(request, uidb64, token):
 def homeView(request):
         return render(request, 'home.html', {})
 def home(request):
+    if request.method=="POST":
+        form = SubscriptionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("home"))
+    else:
+        form = SubscriptionForm()
+        return render(request, 'home.html', {'form': form})
+
     return render(request, 'home.html', {})
 def VChome(request):
     return render(request, 'VChome.html', {})
@@ -164,3 +179,8 @@ def update_profile(request):
     return render(request, 'profile.html', {
         'profile_form': profile_form
     })
+class SubscriptionView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
+    form_class = SubscriptionForm
+    template_name = 'subscribe.html'
+    success_message = 'You are now subscribed!'
+    success_url = reverse_lazy('home')

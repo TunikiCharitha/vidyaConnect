@@ -105,7 +105,84 @@
         margin-left:0;
       }
     }
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
 
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+
+.cancelbtn,.signupbtn {float:left;width:50%}
+
+
+.container {
+    padding: 16px;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1; left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    color: #000;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
   </style>
 
 {% extends 'base.html' %}
@@ -125,7 +202,40 @@
          <i class="fa fa-graduation-cap"><p style="font-size: 26px; color:#0073b1; font-family: Roboto; display:inline;">VIDHYACONNECT</p></i>
          <a href="{% url 'VChome' %}">Home</a>
          <a href="#">About us</a>
-         <a href="#">Subscribe</a>
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Subscribe</button>
+
+<div id="id01" class="modal">
+<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+<form class="modal-content animate" method="post">
+    {% csrf_token %}
+    <div class="container">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <!--<label><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+
+    <label><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>-->
+
+        <div class="clearfix">
+
+        <button type="submit" class="signupbtn">Subscribe</button>
+    </div>
+    </div>
+</form>
+</div>
+
+<script>
+
+var modal = document.getElementById('id01');
+
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
          <a href="{% url 'login' %}">Login</a>
          <a href="{% url 'signup' %}">Sign Up</a>
      </div>
