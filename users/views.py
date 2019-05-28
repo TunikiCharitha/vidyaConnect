@@ -13,7 +13,7 @@ from django.db import transaction
 from django.contrib import messages
 from django.template import RequestContext
 from django.contrib.auth import authenticate, logout
-from .models import CustomUser,Profile, Subscription
+from .models import CustomUser,Profile, Subscribe
 from django.contrib.auth.views import login
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
@@ -112,7 +112,7 @@ def activate(request, uidb64, token):
     template_name = 'signup.html'"""
 
 def homeView(request):
-        return render(request, 'home.html', {})
+    return render(request, 'home.html', {})
 def home(request):
     if request.method=="POST":
         form = SubscriptionForm(request.POST)
@@ -122,8 +122,7 @@ def home(request):
     else:
         form = SubscriptionForm()
         return render(request, 'home.html', {'form': form})
-
-    return render(request, 'home.html', {})
+    #return render(request, 'home.html', {})
 def VChome(request):
     return render(request, 'VChome.html', {})
 
@@ -179,8 +178,8 @@ def update_profile(request):
     return render(request, 'profile.html', {
         'profile_form': profile_form
     })
-class SubscriptionView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
+"""class SubscriptionView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
     form_class = SubscriptionForm
     template_name = 'subscribe.html'
     success_message = 'You are now subscribed!'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('home')"""

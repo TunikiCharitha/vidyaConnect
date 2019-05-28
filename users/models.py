@@ -47,7 +47,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-class Subscription(models.Model):
+class Subscribe(models.Model):
     fullname=models.CharField(max_length=30)
     mailid=models.EmailField()
     def __str__(self):
