@@ -178,8 +178,3 @@ def update_profile(request):
     return render(request, 'profile.html', {
         'profile_form': profile_form
     })
-"""class SubscriptionView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
-    form_class = SubscriptionForm
-    template_name = 'subscribe.html'
-    success_message = 'You are now subscribed!'
-    success_url = reverse_lazy('home')"""
